@@ -445,7 +445,7 @@ def to_sql(
         **{
             col: lambda df: df[col].map({True: 1, False: 0}).astype(pd.Int8Dtype())
             for col, dtype in df.dtypes[
-                (df.dtypes == "bool[pyarrow]") | (df.dtypes == "bool")
+                (df.dtypes == "bool[pyarrow]") | (df.dtypes == "bool") | (df.dtypes == "boolean")
             ].items()
         }
     )
