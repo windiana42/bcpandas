@@ -441,7 +441,16 @@ def to_sql(
     # save to temp path
     csv_file_path = get_temp_file(work_directory)
     # replace bools with 1 or 0, this is what pandas native does when writing to SQL Server
-    df.replace({True: 1, False: 0}).to_csv(
+    df_out = df.assign(
+        **{
+            col: lambda df: df[col].map({True: 1, False: 0}).astype(pd.Int8Dtype())
+            for col, dtype in df.dtypes[
+                (df.dtypes == "bool[pyarrow]") | (df.dtypes == "bool")
+            ].items()
+        }
+    )
+    # write to CSV
+    df_out.replace({True: 1, False: 0}).to_csv(
         path_or_buf=csv_file_path,
         sep=delim,
         header=False,
