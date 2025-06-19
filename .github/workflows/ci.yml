@@ -61,6 +61,7 @@ jobs:
           echo
           echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc
           source ~/.bashrc
+          echo $PATH
           echo test bcp
           echo __ bashrc __
           cat ~/.bashrc
