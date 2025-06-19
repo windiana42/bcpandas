@@ -63,11 +63,6 @@ jobs:
           echo /opt/mssql-tools18/bin >> $GITHUB_PATH
           ls -l /opt/
           cat /etc/odbcinst.ini
-#          find /opt -iname odbcinst
-#          find /etc -iname odbcinst.ini
-#          find /usr -iname "*odbcinst*"
-#          sudo cat /etc/odbcinst.ini
-#          sudo odbcinst -j
 
       - name: Test BCP
         run: bcp -v
