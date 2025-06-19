@@ -62,8 +62,7 @@ jobs:
           ls -l /opt/
           find /opt -iname odbcinst
           find /etc -iname odbcinst.ini
-          echo
-          find / -iname "*odbcinst*"
+          find /usr -iname "*odbcinst*"
 #          sudo cat /etc/odbcinst.ini
 #          sudo odbcinst -j
 
