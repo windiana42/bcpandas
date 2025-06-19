@@ -53,7 +53,7 @@ jobs:
         run: |
           # https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver15#ubuntu
           curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-          curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+          curl https://packages.microsoft.com/config/ubuntu/24.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
           sudo apt-get update
           sudo apt-get install mssql-tools unixodbc-dev
           ls /opt
@@ -61,6 +61,11 @@ jobs:
           ls /opt/mssql-tools/bin
           echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
           source ~/.bashrc
+          echo test bcp
+          which bcp
+          /opt/mssql-tools/bin/bcp -v
+          echo __ bashrc __
+          cat ~/.bashrc
 
       - name: Test BCP
         run: bcp -v
