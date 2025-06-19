@@ -56,16 +56,16 @@ jobs:
           curl https://packages.microsoft.com/config/ubuntu/24.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
           sudo apt-get update
           sudo apt-get install mssql-tools18 unixodbc-dev
-          ls /opt
-          ls /opt/mssql-tools18
+          echo ls /opt/mssql-tools18/bin
           ls /opt/mssql-tools18/bin
+          echo
           echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc
           source ~/.bashrc
           echo test bcp
           which bcp
-          /opt/mssql-tools19/bin/bcp -v
           echo __ bashrc __
           cat ~/.bashrc
+          /opt/mssql-tools18/bin/bcp -v
 
       - name: Test BCP
         run: bcp -v
