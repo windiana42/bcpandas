@@ -57,13 +57,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install mssql-tools18 unixodbc-dev
           ls /opt
-          ls /opt/mssql-tools
-          ls /opt/mssql-tools/bin
-          echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
+          ls /opt/mssql-tools18
+          ls /opt/mssql-tools18/bin
+          echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc
           source ~/.bashrc
           echo test bcp
           which bcp
-          /opt/mssql-tools/bin/bcp -v
+          /opt/mssql-tools19/bin/bcp -v
           echo __ bashrc __
           cat ~/.bashrc
 
