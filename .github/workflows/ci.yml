@@ -62,10 +62,10 @@ jobs:
           echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc
           source ~/.bashrc
           echo test bcp
-          which bcp
           echo __ bashrc __
           cat ~/.bashrc
           /opt/mssql-tools18/bin/bcp -v
+          which bcp
 
       - name: Test BCP
         run: bcp -v
