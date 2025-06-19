@@ -56,19 +56,8 @@ jobs:
           curl https://packages.microsoft.com/config/ubuntu/24.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
           sudo apt-get update
           sudo apt-get install mssql-tools18 unixodbc-dev
-          echo ls -l /opt/mssql-tools18/bin
           ls -l /opt/mssql-tools18/bin
-          echo
-          echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc
-          . ~/.bashrc
-          echo $PATH
-          # somehow sourcing ~/.bashrc does not work
-          export PATH="$PATH:/opt/mssql-tools18/bin"
-          echo test bcp
-          echo __ bashrc __
-          cat ~/.bashrc
-          /opt/mssql-tools18/bin/bcp -v
-          which bcp
+          echo /opt/mssql-tools18/bin >> $GITHUB_PATH
 
       - name: Test BCP
         run: bcp -v
