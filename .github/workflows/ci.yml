@@ -61,9 +61,10 @@ jobs:
           ls -l /opt/
           find /opt -iname odbcinst
           find /etc -iname odbcinst.ini
-          cat /etc/odbcinst.ini
-          which odbcinst
-          odbcinst -j
+          echo
+          find / -iname "*odbcinst*"
+          sudo cat /etc/odbcinst.ini
+          sudo odbcinst -j
 
       - name: Test BCP
         run: bcp -v
