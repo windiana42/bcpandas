@@ -55,12 +55,13 @@ jobs:
           curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
           curl https://packages.microsoft.com/config/ubuntu/24.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
           sudo apt-get update
-          sudo apt-get install mssql-tools18 unixodbc-dev
+          sudo apt-get install mssql-tools18 unixodbc-dev odbcinst
           ls -l /opt/mssql-tools18/bin
           echo /opt/mssql-tools18/bin >> $GITHUB_PATH
           ls -l /opt/
           find /opt -iname odbcinst
           find /etc -iname odbcinst.ini
+          cat /etc/odbcinst.ini
           which odbcinst
           odbcinst -j
 

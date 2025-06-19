@@ -161,7 +161,7 @@ class DockerDB:
     def create_engine(self, db_name="master") -> sa.engine.Engine:
         """Creates SQLAlchemy pyodbc engine for connecting to specified database (default master) as SA user"""
         db_url = (
-            "Driver={ODBC Driver 17 for SQL Server};"
+            "Driver={ODBC Driver 18 for SQL Server};"
             + f"Server={self.address};Database={db_name};UID=sa;PWD={self.sa_sql_password};"
         )
         return sa.engine.create_engine(
