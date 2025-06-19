@@ -58,6 +58,11 @@ jobs:
           sudo apt-get install mssql-tools18 unixodbc-dev
           ls -l /opt/mssql-tools18/bin
           echo /opt/mssql-tools18/bin >> $GITHUB_PATH
+          ls -l /opt/
+          find /opt -iname odbcinst
+          find /etc -iname odbcinst.ini
+          which odbcinst
+          odbcinst -j
 
       - name: Test BCP
         run: bcp -v
