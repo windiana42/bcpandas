@@ -7,6 +7,7 @@ Created on Sat Aug  3 23:07:15 2019
 import csv
 import logging
 import os
+from copy import copy
 from pathlib import Path
 from textwrap import dedent
 from typing import Dict, List, Optional, Union
@@ -441,9 +442,13 @@ def to_sql(
     # save to temp path
     csv_file_path = get_temp_file(work_directory)
     # replace bools with 1 or 0, this is what pandas native does when writing to SQL Server
+    # attention: the `(lambda col: lambda...)(copy(col))` part looks odd but is
+    # needed to ensure loop iterations create lambdas working on different columns.
     df_out = df.assign(
         **{
-            col: lambda df: df[col].map({True: 1, False: 0}).astype(pd.Int8Dtype())
+            col: (lambda col: lambda df: df[col].map({True: 1, False: 0}).astype(pd.Int8Dtype()))(
+                copy(col)
+            )
             for col, dtype in df.dtypes[
                 (df.dtypes == "bool[pyarrow]") | (df.dtypes == "bool") | (df.dtypes == "boolean")
             ].items()
